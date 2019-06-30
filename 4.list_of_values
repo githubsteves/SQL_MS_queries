@@ -1,0 +1,14 @@
+/*============================================
+       RETRIEVING A LIST OF VALUES 
+  ============================================ */
+
+select SalesOrderID, OrderQty, ProductID, UnitPrice 
+from Sales.SalesOrderDetail
+where ProductID in ( 750, 753, 765, 770)
+order by ProductID asc 
+;
+select SalesOrderID, OrderQty, ProductID, UnitPrice 
+from Sales.SalesOrderDetail 
+where ProductID = 750 or  ProductID = 753
+or ProductID = 765 or ProductID = 770
+order by ProductID asc 
