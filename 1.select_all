@@ -29,3 +29,12 @@ select * from Person.AddressType
 select * from Person.Contact
 select * from Person.ContactType
 select * from Person.StateProvince
+
+
+select * from Sales.SalesOrderDetail;
+select * from Sales.SalesOrderHeader;
+select * from Sales.SpecialOffer;
+select * from Sales.SalesOrderHeaderSalesReason;
+select * from Sales.SalesReason;
+select * from Sales.SalesTerritory;
+select * from Sales.SalesTerritoryHistory;
