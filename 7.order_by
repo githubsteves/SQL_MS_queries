@@ -1,0 +1,84 @@
+select LastName, FirstName, MiddleName 
+from Person.Person 
+order by LastName, FirstName 
+;
+
+select * from Sales.SalesOrderDetail
+;
+select top 5 SalesOrderID 
+from Sales.SalesOrderDetail
+
+select SalesOrderID, LineTotal
+from Sales.SalesOrderDetail 
+group by SalesOrderID, LineTotal
+order by  LineTotal desc
+
+select SalesOrderID, ProductID, OrderQty
+from Sales.SalesOrderDetail 
+where SalesOrderID = 55282
+
+USE Adventureworks2012;
+select * from Person.Person;
+
+select FirstName, LastName, MiddleName 
+from Person.Person
+order by FirstName
+;
+select * from Production.Product 
+;
+select ProductID, Name, ProductNumber 
+from Production.Product 
+order by ProductID
+;
+select * from Production.ProductModel
+;
+select ProductModelID, Name
+from Production.Product 
+order by ProductModelID
+
+select * from HumanResources.Employee 
+;
+select * from Person.Person;
+;
+select FirstName, LastName, MiddleName 
+from Person.Person
+where LastName like 'Adams'
+order by FirstName
+;
+select * from Production.ProductModel
+;
+select ProductModelID, Name
+from Production.Product 
+order by ProductModelID
+;
+select distinct LastName, FirstName, MiddleName 
+from Person.Person
+order by LastName, FirstName 
+;
+select * from Person.Person;
+
+select FirstName, LastName, MiddleName 
+from Person.Person
+order by FirstName
+;
+select distinct LastName
+from Person.Person 
+;
+select * from Sales.SalesOrderDetail
+where SalesOrderID = 43659
+;
+select distinct SalesOrderID, UnitPrice
+from Sales.SalesOrderDetail
+where SalesOrderID = 43659
+order by SalesOrderID asc
+;
+select distinct UnitPrice
+from Sales.SalesOrderDetail
+
+select * from Person.Person;
+
+select FirstName
+from Person.Person 
+where FirstName like 'A%'or FirstName like 'B%'
+order by FirstName asc 
+;
