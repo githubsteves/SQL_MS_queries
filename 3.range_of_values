@@ -1,0 +1,34 @@
+
+
+/*===============================================
+       RETRIEVING A RANGE OF VALUES 
+  =============================================== */
+
+
+select * from Sales.SalesOrderHeader
+;
+select OrderDate, AccountNumber, SubTotal, TaxAmt
+from Sales.SalesOrderHeader 
+where OrderDate between '2005-07-01' and '2005-12-31'
+;
+select OrderDate, AccountNumber, SubTotal, TaxAmt 
+from Sales.SalesOrderHeader 
+where OrderDate >= '2005-07-01' and OrderDate <= '2005-12-31'
+;
+select OrderDate, AccountNumber, SubTotal, TaxAmt 
+from Sales.SalesOrderHeader 
+where OrderDate > '2005-07-01' and OrderDate < '2005-12-31'
+;
+
+select * from HumanResources.Employee
+;
+select BusinessEntityID, JobTitle, BirthDate, Gender, HireDate 
+from HumanResources.Employee 
+where HireDate >= '2005-01-31' and HireDate <= '2005-12-31'
+;
+select BusinessEntityID, JobTitle, BirthDate, Gender, HireDate 
+from Humanresources.Employee 
+where HireDate between '2005-01-31' and '2005-12-31'
+;
+
+select * from Sales.SalesOrderDetail
