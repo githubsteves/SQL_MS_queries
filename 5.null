@@ -29,3 +29,24 @@ where ProductID > 10
 select *--TaxAmt, CurrencyRateID, isnull(CurrencyRateID, 0)
 from Sales.SalesOrderHeader
 ;
+
+
+
+select (LastName +','+ FirstName +','+ isnull(substring(MiddleName,1,1), ' ')) as 'Name'
+from Person.Person 
+;
+select FirstName + ' ' + substring(MiddleName,1,1) + ' ' + LastName,
+FirstName + ' ' + isnull(substring(MiddleName,1,1),' ') + ' ' + LastName 
+from Person.Person 
+;
+
+select FirstName, MiddleName, LastName 
+from Person.Person 
+;
+select 
+Size + SizeUnitMeasureCode + Color + Name as 'TRY1',
+isnull(Size,' ') + isnull(SizeUnitMeasureCode, ' ') + isnull(Color, ' ') + Name as 'TRY2',
+isnull(Size, ' , ') + isnull(SizeUnitMeasureCode,' , ') + isnull(Color, ' , ') + Name as 'TRY3',
+ProductID, Name, Color, Size, SizeUnitMeasureCode
+from Production.Product
+;
