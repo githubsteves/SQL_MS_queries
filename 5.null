@@ -1,0 +1,31 @@
+select * from Production.Product
+where ProductId = 776
+
+
+select Description, DiscountPct, MinQty, isnull(MaxQty,0) as 'MAX Quantity'
+from Sales.SpecialOffer;
+
+select Description, DiscountPct, MinQty, MaxQty
+from Sales.SpecialOffer 
+;
+select description, DiscountPct, MinQty, isnull(MaxQty, 123456) 
+from Sales.SpecialOffer 
+;
+select * from Person.Person 
+;
+select FirstName, LastName, MiddleName, isnull(Title,'No data') as 'Title' 
+from Person.Person
+
+select SalesOrderID, Status, CustomerID, isnull(Comment, 'No data') as 'Comment' 
+from Sales.SalesOrderHeader;
+;
+select * from Sales.SalesTerritory
+;
+select * from Production.Product;
+select ProductID, MakeFlag, FinishedGoodsFlag, nullif(MakeFlag, FinishedGoodsFlag) as 'Null if Equal'
+from Production.Product 
+where ProductID > 10
+
+select *--TaxAmt, CurrencyRateID, isnull(CurrencyRateID, 0)
+from Sales.SalesOrderHeader
+;
