@@ -1,0 +1,120 @@
+USE AdventureWorks2008R2;
+GO
+select *
+--from HumanResources.Employee;
+from Person.Person ;
+;
+select BusinessEntityID, FirstName, LastName, Title 
+from Person.Person 
+;
+select BusinessEntityID, Title, FirstName, Lastname, rowguid
+from Person.Person
+;
+select BusinessEntityID, OrganizationLevel, JobTitle, SickLeaveHours
+from HumanResources.Employee
+;
+select * 
+from HumanResources.Employee
+order by HireDate desc
+;
+select BusinessEntityID as 'Employee Identification Number', HireDate
+from HumanResources.Employee 
+where BusinessEntityID = 227
+;
+select BusinessEntityID, OrganizationLevel, JobTitle, VacationHours, HireDate
+from HumanResources.Employee
+where HireDate between '2003-01-01' and '2003-12-31'
+order by HireDate asc 
+
+select *
+from Person.BusinessEntityAddress
+;
+select BusinessEntityID, AddressID, AddressTypeID 
+from Person.BusinessEntityAddress 
+;
+select *
+from HumanResources.JobCandidate
+;
+select *
+from Production.Product 
+;
+select ProductID, ProductNumber, Color, ProductLine, ProductModelID
+from Production.Product
+where ProductLine ='R'
+and Color = 'Red'
+
+select ProductID, ProductNumber, Color, SafetyStockLevel
+from Production.Product 
+where ProductNumber like 'BK%'
+and SafetyStockLevel >= 100
+
+select FirstName, LastName, MiddleName, ModifiedDate 
+from Person.Person 
+where Modifieddate >= '2004/01/01'
+order by ModifiedDate asc 
+
+select *
+from Production.Product 
+;
+select ProductID, ProductNumber, Color, ListPrice, DaysToManufacture
+from Production.Product 
+where ProductID between 316 and 399
+;
+select * 
+from Person.Person
+;
+select FirstName, LastName, MiddleName
+from Person.Person 
+where FirstName like 'Stefan'
+;
+select FirstName, LastName, MiddleName
+from Person.Person 
+where FirstName = 'Stefan'
+;
+select *
+from Production.Product 
+;
+select ProductID, ProductNumber, SellStartDate 
+from Production.Product 
+where SellStartDate between '2005-07-01' and '2007-07-01'
+order by SellStartDate desc
+;
+select ProductID, ProductNumber, Color, SafetyStockLevel
+from Production.Product 
+where ProductNumber like 'BA%'
+;
+select * from Person.Person
+;
+select *from Person.Person where LastName like 'Johns%n'
+;
+select *from Person.Person where LastName = 'Johnson'
+;
+select FirstName, LastName, MiddleName from Person.Person 
+where FirstName = 'John' and not LastName = 'Smith'
+; 
+select * from Production.Product 
+;
+select ProductID, Name, ProductNumber, Color from Production.Product 
+where ProductNumber in ('AR-5381', 'BA-8327', 'BL-2036')
+;
+select FirstName, LastName, MiddleName 
+from Person.Person
+where FirstName = 'Caroline' 
+--and LastName = 'Alexander'
+and not LastName = 'Alexander'
+;
+select ProductID, Name, ProductNumber, Color, ProductLine from Production.Product 
+where ProductNumber like 'BK%' 
+and ProductLine = 'M' 
+and Color = 'Black' 
+;
+
+USE AdventureWorks2012;
+select * from Person.Person;
+select * from Production.Product;
+;
+select ProductID, Name, ProductNumber, Color
+from Production.Product                  
+where ProductNumber like 'BK%'
+--and Color in ('Black','Red')
+or Color in ('Black','Red')
