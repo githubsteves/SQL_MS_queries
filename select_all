@@ -1,0 +1,31 @@
+
+USE TSQL2012;
+
+select * from HR.Employees;
+select * from Sales.Customers;
+select * from Sales.OrderDetails;
+select * from Sales.Orders;
+select * from Sales.Shippers;
+
+select * from Production.Categories;
+select * from Production.Products; 
+select * from Production.Suppliers;
+
+select * from Sales.CustOrders;
+select * from Sales.OrderTotalsByYear;
+
+select * from Stats.Tests
+
+USE AdventureWorks;
+
+select * from HumanResources.Department;
+select * from HumanResources.Employee;
+select * from HumanResources.EmployeeAddress;
+select * from HumanResources.EmployeeDepartmentHistory
+select * from HumanResources.EmployeePayHistory
+
+select * from Person.Address
+select * from Person.AddressType
+select * from Person.Contact
+select * from Person.ContactType
+select * from Person.StateProvince
