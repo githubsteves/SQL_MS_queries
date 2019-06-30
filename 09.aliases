@@ -1,0 +1,61 @@
+/* 
+===============================================
+     ALIASES 
+=============================================== */
+
+select * from HumanResources.Employee;
+
+select BusinessEntityID as 'Employee Identification Number'
+from HumanResources.Employee as e ;
+;
+select e.BusinessEntityID 'Employee Identification Number' 
+from HumanResources.Employee E
+order by e.BusinessEntityID asc  
+;
+
+select Name, ProductNumber, ListPrice as 'Old Price', 
+       (ListPrice * 1.1) as 'New Price' 
+from Production.Product 
+;
+select * from Production.Product;
+select * from Sales.SalesOrderHeader;
+
+USE TSQL2012;
+GO
+select * from Sales.OrderDetails;
+;
+select orderid, unitprice, (unitprice + 1) as 'New Unitprice'
+from Sales.OrderDetails 
+;
+select orderid, unitprice, (unitprice + 1) as 'New Unitprice1', (unitprice-1) as 'New Unitprice2'
+from Sales.OrderDetails 
+
+select orderid, unitprice 
+from Sales.OrderDetails 
+where orderid between 10273 and 10277
+
+/* select Grade, count(*) * 100.0 / sum(count(*)) over()
+   from MyTable
+   group by Grade   */
+
+---
+USE AdventureWorks2012;
+;
+select * from Sales.Customer;
+select * from Production.ProductListPriceHistory;
+
+select ProductID, ListPrice, ListPrice + 5 as 'New Price' 
+from Production.ProductListPriceHistory
+where ProductID = 707 or ProductID = 708 or ProductID = 709
+;
+select * from Person.Person
+; 
+select FirstName, LastName 
+from Person.Person
+order by FirstName asc
+
+select FirstName, LastName 
+from Person.Person 
+where FirstName like '%na'
+order by FirstName asc 
+
