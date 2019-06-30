@@ -1,0 +1,117 @@
+
+/* 
+==================
+   ORDER BY CLAUSE 
+   AND AGGREGATE Functions
+==================
+*/
+
+select * from Sales.SalesOrderDetail
+;
+select SalesOrderID, sum(LineTotal) as 'Subtotal'
+from Sales.SalesOrderDetail
+group by SalesOrderID 
+order by Subtotal desc
+;
+select SalesOrderID, sum(LineTotal) as 'Subtotal'
+from Sales.SalesOrderDetail
+group by SalesOrderID
+order by sum(LineTotal) desc 
+;
+select * from Sales.SalesOrderHeader
+;
+select top 10 SalesOrderID, sum(SubTotal) as 'Total'-- avg(SubTotal) as 'AVG'
+from Sales.SalesOrderHeader 
+group by SalesOrderID
+;
+select SalesOrderID, SubTotal 
+from Sales.SalesOrderHeader 
+where SalesOrderID = 43659
+;
+select SalesPersonID, SubTotal
+from Sales.SalesOrderHeader 
+;
+select SalesPersonID, sum(SubTotal) as 'Total', avg(SubTotal) as 'AVG', max(SubTotal) as 'MAX',
+min(SubTotal) as 'MIN'
+from Sales.SalesOrderHeader 
+group by SalesPersonID 
+order by SalesPersonID desc 
+;
+select TerritoryID, sum(freight) as 'SUM FREIGHT', max(Freight) as 'MAX FREIGHT', avg(Freight) as 'AVG FREIGHT'
+from Sales.SalesOrderHeader 
+group by TerritoryID 
+order by sum(Freight) desc 
+;
+select * from Production.Product 
+;
+select Color, sum(ListPrice)
+from Production.Product
+group by Color
+order by sum(ListPrice) desc
+;
+select ProductLine, sum(ListPrice) as 'SUM',  avg(ListPrice) as 'AVG', min(ListPrice) as 'MIN', max(ListPrice) as 'MAX'
+from Production.Product 
+group by ProductLine 
+;
+select ProductModelID , sum(ListPrice) as 'SUM'
+from Production.Product 
+group by ProductModelID  
+order by sum(ListPrice) desc 
+
+--- ProductModelID 
+select * from Sales.Customer
+;
+select * from Sales.SalesOrderDetail;
+
+select SalesOrderID, count(*) 
+from Sales.SalesOrderDetail 
+group by SalesOrderID
+
+select SalesOrderID
+from Sales.SalesOrderDetail 
+where SalesOrderID = 43659
+
+USE TSQL2012;
+
+select * from Sales.Orders
+;
+select * from Sales.OrderDetails
+;
+select orderid, count(productid) as 'NrProductsSold', sum(unitprice*qty) as 'Amount'
+from Sales.OrderDetails 
+group by orderid
+having sum(unitprice*qty) > 1000
+;
+select orderid, count(productid) as 'NrProductsSold', sum(unitprice*qty) as 'Amount'
+from Sales.OrderDetails 
+group by orderid
+having sum(unitprice*qty) >1000
+
+
+select *
+from Sales.OrderDetails 
+where orderid = 10248
+;
+
+USE Adventureworks2012;
+GO
+select * from Sales.SalesOrderDetail
+;
+select SalesOrderID, sum(LineTotal) as 'SubTotal'
+from Sales.SalesOrderDetail
+group by SalesOrderID
+having sum(LineTotal) >100000
+order by SalesOrderID 
+;
+select SalesOrderID, sum(OrderQty*UnitPrice) as 'Total'
+from Sales.SalesOrderDetail
+group by SalesOrderID
+having sum(OrderQty*UnitPrice) > 100000
+order by sum(OrderQty*UnitPrice) desc 
+;
+select top 10 SalesOrderID, sum(OrderQty*UnitPrice) as 'Total'
+from Sales.SalesOrderDetail
+group by SalesOrderID 
+having sum(OrderQty*UnitPrice) <1000
+order by sum(OrderQty*UnitPrice) asc 
+
