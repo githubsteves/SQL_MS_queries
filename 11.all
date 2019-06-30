@@ -1,0 +1,569 @@
+
+USE TSQL2012;
+select * from HR.Employees;
+select * from Sales.Customers;
+select * from Sales.OrderDetails;
+select * from Sales.Orders;
+select * from Sales.Shippers;
+
+select * from Production.Categories;
+select * from Production.Products; 
+select * from Production.Suppliers;
+
+select * from Sales.CustOrders;
+select * from Sales.OrderTotalsByYear;
+
+select * from Stats.Tests
+
+USE AdventureWorks;
+select * from HumanResources.Department;
+select * from HumanResources.Employee;
+select * from HumanResources.EmployeeAddress;
+select * from HumanResources.EmployeeDepartmentHistory
+select * from HumanResources.EmployeePayHistory
+
+select * from Person.Address
+select * from Person.AddressType
+select * from Person.Contact
+select * from Person.ContactType
+select * from Person.StateProvince
+
+
+USE AdventureWorks2008R2;
+GO
+select *
+--from HumanResources.Employee;
+from Person.Person ;
+;
+select BusinessEntityID, FirstName, LastName, Title 
+from Person.Person 
+;
+select BusinessEntityID, Title, FirstName, Lastname, rowguid
+from Person.Person
+;
+select BusinessEntityID, OrganizationLevel, JobTitle, SickLeaveHours
+from HumanResources.Employee
+;
+select * 
+from HumanResources.Employee
+order by HireDate desc
+;
+select BusinessEntityID as 'Employee Identification Number', HireDate
+from HumanResources.Employee 
+where BusinessEntityID = 227
+;
+select BusinessEntityID, OrganizationLevel, JobTitle, VacationHours, HireDate
+from HumanResources.Employee
+where HireDate between '2003-01-01' and '2003-12-31'
+order by HireDate asc 
+
+select *
+from Person.BusinessEntityAddress
+;
+select BusinessEntityID, AddressID, AddressTypeID 
+from Person.BusinessEntityAddress 
+;
+select *
+from HumanResources.JobCandidate
+;
+select *
+from Production.Product 
+;
+select ProductID, ProductNumber, Color, ProductLine, ProductModelID
+from Production.Product
+where ProductLine ='R'
+and Color = 'Red'
+
+select ProductID, ProductNumber, Color, SafetyStockLevel
+from Production.Product 
+where ProductNumber like 'BK%'
+and SafetyStockLevel >= 100
+
+select FirstName, LastName, MiddleName, ModifiedDate 
+from Person.Person 
+where Modifieddate >= '2004/01/01'
+order by ModifiedDate asc 
+
+select *
+from Production.Product 
+;
+select ProductID, ProductNumber, Color, ListPrice, DaysToManufacture
+from Production.Product 
+where ProductID between 316 and 399
+;
+select * 
+from Person.Person
+;
+select FirstName, LastName, MiddleName
+from Person.Person 
+where FirstName like 'Stefan'
+;
+select FirstName, LastName, MiddleName
+from Person.Person 
+where FirstName = 'Stefan'
+;
+select *
+from Production.Product 
+;
+select ProductID, ProductNumber, SellStartDate 
+from Production.Product 
+where SellStartDate between '2005-07-01' and '2007-07-01'
+order by SellStartDate desc
+;
+select ProductID, ProductNumber, Color, SafetyStockLevel
+from Production.Product 
+where ProductNumber like 'BA%'
+;
+select * from Person.Person
+;
+select *from Person.Person where LastName like 'Johns%n'
+;
+select *from Person.Person where LastName = 'Johnson'
+;
+select FirstName, LastName, MiddleName from Person.Person 
+where FirstName = 'John' and not LastName = 'Smith'
+; 
+select * from Production.Product 
+;
+select ProductID, Name, ProductNumber, Color from Production.Product 
+where ProductNumber in ('AR-5381', 'BA-8327', 'BL-2036')
+;
+select FirstName, LastName, MiddleName 
+from Person.Person
+where FirstName = 'Caroline' 
+--and LastName = 'Alexander'
+and not LastName = 'Alexander'
+;
+select ProductID, Name, ProductNumber, Color, ProductLine from Production.Product 
+where ProductNumber like 'BK%' 
+and ProductLine = 'M' 
+and Color = 'Black' 
+;
+
+USE AdventureWorks2012;
+select * from Person.Person;
+select * from Production.Product;
+;
+select ProductID, Name, ProductNumber, Color
+from Production.Product                  
+where ProductNumber like 'BK%'
+--and Color in ('Black','Red')
+or Color in ('Black','Red')
+
+/*===============================================
+       RETRIEVING A RANGE OF VALUES 
+  =============================================== */
+
+
+select * from Sales.SalesOrderHeader
+;
+select OrderDate, AccountNumber, SubTotal, TaxAmt
+from Sales.SalesOrderHeader 
+where OrderDate between '2005-07-01' and '2005-12-31'
+;
+select OrderDate, AccountNumber, SubTotal, TaxAmt 
+from Sales.SalesOrderHeader 
+where OrderDate >= '2005-07-01' and OrderDate <= '2005-12-31'
+;
+select OrderDate, AccountNumber, SubTotal, TaxAmt 
+from Sales.SalesOrderHeader 
+where OrderDate > '2005-07-01' and OrderDate < '2005-12-31'
+;
+
+select * from HumanResources.Employee
+;
+select BusinessEntityID, JobTitle, BirthDate, Gender, HireDate 
+from HumanResources.Employee 
+where HireDate >= '2005-01-31' and HireDate <= '2005-12-31'
+;
+select BusinessEntityID, JobTitle, BirthDate, Gender, HireDate 
+from Humanresources.Employee 
+where HireDate between '2005-01-31' and '2005-12-31'
+;
+
+select * from Sales.SalesOrderDetail
+;
+/*============================================
+       RETRIEVING A LIST OF VALUES 
+  ============================================ */
+
+select SalesOrderID, OrderQty, ProductID, UnitPrice 
+from Sales.SalesOrderDetail
+where ProductID in ( 750, 753, 765, 770)
+order by ProductID asc 
+;
+select SalesOrderID, OrderQty, ProductID, UnitPrice 
+from Sales.SalesOrderDetail 
+where ProductID = 750 or  ProductID = 753
+or ProductID = 765 or ProductID = 770
+order by ProductID asc 
+
+select * from Sales.SalesOrderDetail;
+select * from Sales.SalesOrderHeader;
+select * from Sales.SpecialOffer;
+select * from Sales.SalesOrderHeaderSalesReason;
+select * from Sales.SalesReason;
+select * from Sales.SalesTerritory;
+select * from Sales.SalesTerritoryHistory;
+
+select * from Production.Product
+where ProductId = 776
+
+
+select Description, DiscountPct, MinQty, isnull(MaxQty,0) as 'MAX Quantity'
+from Sales.SpecialOffer;
+
+select Description, DiscountPct, MinQty, MaxQty
+from Sales.SpecialOffer 
+;
+select description, DiscountPct, MinQty, isnull(MaxQty, 123456) 
+from Sales.SpecialOffer 
+;
+select * from Person.Person 
+;
+select FirstName, LastName, MiddleName, isnull(Title,'No data') as 'Title' 
+from Person.Person
+
+select SalesOrderID, Status, CustomerID, isnull(Comment, 'No data') as 'Comment' 
+from Sales.SalesOrderHeader;
+;
+select * from Sales.SalesTerritory
+;
+select * from Production.Product;
+select ProductID, MakeFlag, FinishedGoodsFlag, nullif(MakeFlag, FinishedGoodsFlag) as 'Null if Equal'
+from Production.Product 
+where ProductID > 10
+
+select *--TaxAmt, CurrencyRateID, isnull(CurrencyRateID, 0)
+from Sales.SalesOrderHeader
+;
+
+select CAST(COALESCE(hourly_wage * 40 *52, salary, comission * num_sales) as money) as 'Total Salry'
+from wages;
+///////////////////////
+CREATE TABLE dbo.wages  
+(  
+    emp_id        tinyint   identity,  
+    hourly_wage   decimal   NULL,  
+    salary        decimal   NULL,  
+    commission    decimal   NULL,  
+    num_sales     tinyint   NULL  
+);  
+GO  
+INSERT dbo.wages (hourly_wage, salary, commission, num_sales)  
+VALUES  
+    (10.00, NULL, NULL, NULL),  
+    (20.00, NULL, NULL, NULL),  
+    (30.00, NULL, NULL, NULL),  
+    (40.00, NULL, NULL, NULL),  
+    (NULL, 10000.00, NULL, NULL),  
+    (NULL, 20000.00, NULL, NULL),  
+    (NULL, 30000.00, NULL, NULL),  
+    (NULL, 40000.00, NULL, NULL),  
+    (NULL, NULL, 15000, 3),  
+    (NULL, NULL, 25000, 2),  
+    (NULL, NULL, 20000, 6),  
+    (NULL, NULL, 14000, 4);  
+GO  
+SET NOCOUNT OFF;  
+GO  
+SELECT CAST(COALESCE(hourly_wage * 40 * 52,   
+   salary,   
+   commission * num_sales) AS money) AS 'Total Salary'   
+FROM dbo.wages  
+ORDER BY 'Total Salary';  
+GO  
+
+select * from dbo.wages
+;
+select emp_id, hourly_wage, salary, commission, num_sales,
+COALESCE(hourly_wage, salary, commission * num_sales) as 'Total Salary'
+from dbo.wages;
+
+select * from Person.Person 
+;
+select FirstName, LastName, Title, Middlename, COALESCE( Title, MiddleName) as 'COALESCE EXAMPLE'
+from Person.Person;
+
+select LastName, FirstName, MiddleName 
+from Person.Person 
+order by LastName, FirstName 
+;
+
+select * from Sales.SalesOrderDetail
+;
+select top 5 SalesOrderID 
+from Sales.SalesOrderDetail
+
+select SalesOrderID, LineTotal
+from Sales.SalesOrderDetail 
+group by SalesOrderID, LineTotal
+order by  LineTotal desc
+
+select SalesOrderID, ProductID, OrderQty
+from Sales.SalesOrderDetail 
+where SalesOrderID = 55282
+
+USE Adventureworks2012;
+select * from Person.Person;
+
+select FirstName, LastName, MiddleName 
+from Person.Person
+order by FirstName
+;
+select * from Production.Product 
+;
+select ProductID, Name, ProductNumber 
+from Production.Product 
+order by ProductID
+;
+select * from Production.ProductModel
+;
+select ProductModelID, Name
+from Production.Product 
+order by ProductModelID
+
+select * from HumanResources.Employee 
+;
+select * from Person.Person;
+;
+select FirstName, LastName, MiddleName 
+from Person.Person
+where LastName like 'Adams'
+order by FirstName
+;
+select * from Production.ProductModel
+;
+select ProductModelID, Name
+from Production.Product 
+order by ProductModelID
+;
+select distinct LastName, FirstName, MiddleName 
+from Person.Person
+order by LastName, FirstName 
+;
+select * from Person.Person;
+
+select FirstName, LastName, MiddleName 
+from Person.Person
+order by FirstName
+;
+select distinct LastName
+from Person.Person 
+;
+select * from Sales.SalesOrderDetail
+where SalesOrderID = 43659
+;
+select distinct SalesOrderID, UnitPrice
+from Sales.SalesOrderDetail
+where SalesOrderID = 43659
+order by SalesOrderID asc
+;
+select distinct UnitPrice
+from Sales.SalesOrderDetail
+
+select * from Person.Person;
+
+select FirstName
+from Person.Person 
+where FirstName like 'A%'or FirstName like 'B%'
+order by FirstName asc 
+;
+
+
+/* 
+===============================================
+     ALIASES 
+=============================================== */
+
+select * from HumanResources.Employee;
+
+select BusinessEntityID as 'Employee Identification Number'
+from HumanResources.Employee as e ;
+;
+select e.BusinessEntityID 'Employee Identification Number' 
+from HumanResources.Employee E
+order by e.BusinessEntityID asc  
+;
+
+select (LastName +','+ FirstName +','+ isnull(substring(MiddleName,1,1), ' ')) as 'Name'
+from Person.Person 
+;
+select FirstName + ' ' + substring(MiddleName,1,1) + ' ' + LastName,
+FirstName + ' ' + isnull(substring(MiddleName,1,1),' ') + ' ' + LastName 
+from Person.Person 
+;
+
+select FirstName, MiddleName, LastName 
+from Person.Person 
+;
+select 
+Size + SizeUnitMeasureCode + Color + Name as 'TRY1',
+isnull(Size,' ') + isnull(SizeUnitMeasureCode, ' ') + isnull(Color, ' ') + Name as 'TRY2',
+isnull(Size, ' , ') + isnull(SizeUnitMeasureCode,' , ') + isnull(Color, ' , ') + Name as 'TRY3',
+ProductID, Name, Color, Size, SizeUnitMeasureCode
+from Production.Product
+;
+
+select Name, ProductNumber, ListPrice as 'Old Price', 
+       (ListPrice * 1.1) as 'New Price' 
+from Production.Product 
+;
+select * from Production.Product;
+select * from Sales.SalesOrderHeader;
+
+USE TSQL2012;
+GO
+select * from Sales.OrderDetails;
+;
+select orderid, unitprice, (unitprice + 1) as 'New Unitprice'
+from Sales.OrderDetails 
+;
+select orderid, unitprice, (unitprice + 1) as 'New Unitprice1', (unitprice-1) as 'New Unitprice2'
+from Sales.OrderDetails 
+
+select orderid, unitprice 
+from Sales.OrderDetails 
+where orderid between 10273 and 10277
+
+/* select Grade, count(*) * 100.0 / sum(count(*)) over()
+   from MyTable
+   group by Grade   */
+
+---
+USE AdventureWorks2012;
+;
+select * from Sales.Customer;
+select * from Production.ProductListPriceHistory;
+
+select ProductID, ListPrice, ListPrice + 5 as 'New Price' 
+from Production.ProductListPriceHistory
+where ProductID = 707 or ProductID = 708 or ProductID = 709
+;
+select * from Person.Person
+; 
+select FirstName, LastName 
+from Person.Person
+order by FirstName asc
+
+select FirstName, LastName 
+from Person.Person 
+where FirstName like '%na'
+order by FirstName asc 
+
+
+/* 
+==================
+   ORDER BY CLAUSE 
+   AND AGGREGATE Functions
+==================
+*/
+
+select * from Sales.SalesOrderDetail
+;
+select SalesOrderID, sum(LineTotal) as 'Subtotal'
+from Sales.SalesOrderDetail
+group by SalesOrderID 
+order by Subtotal desc
+;
+select SalesOrderID, sum(LineTotal) as 'Subtotal'
+from Sales.SalesOrderDetail
+group by SalesOrderID
+order by sum(LineTotal) desc 
+;
+select * from Sales.SalesOrderHeader
+;
+select top 10 SalesOrderID, sum(SubTotal) as 'Total'-- avg(SubTotal) as 'AVG'
+from Sales.SalesOrderHeader 
+group by SalesOrderID
+;
+select SalesOrderID, SubTotal 
+from Sales.SalesOrderHeader 
+where SalesOrderID = 43659
+;
+select SalesPersonID, SubTotal
+from Sales.SalesOrderHeader 
+;
+select SalesPersonID, sum(SubTotal) as 'Total', avg(SubTotal) as 'AVG', max(SubTotal) as 'MAX',
+min(SubTotal) as 'MIN'
+from Sales.SalesOrderHeader 
+group by SalesPersonID 
+order by SalesPersonID desc 
+;
+select TerritoryID, sum(freight) as 'SUM FREIGHT', max(Freight) as 'MAX FREIGHT', avg(Freight) as 'AVG FREIGHT'
+from Sales.SalesOrderHeader 
+group by TerritoryID 
+order by sum(Freight) desc 
+;
+select * from Production.Product 
+;
+select Color, sum(ListPrice)
+from Production.Product
+group by Color
+order by sum(ListPrice) desc
+;
+select ProductLine, sum(ListPrice) as 'SUM',  avg(ListPrice) as 'AVG', min(ListPrice) as 'MIN', max(ListPrice) as 'MAX'
+from Production.Product 
+group by ProductLine 
+;
+select ProductModelID , sum(ListPrice) as 'SUM'
+from Production.Product 
+group by ProductModelID  
+order by sum(ListPrice) desc 
+
+--- ProductModelID 
+select * from Sales.Customer
+;
+select * from Sales.SalesOrderDetail;
+
+select SalesOrderID, count(*) 
+from Sales.SalesOrderDetail 
+group by SalesOrderID
+
+select SalesOrderID
+from Sales.SalesOrderDetail 
+where SalesOrderID = 43659
+
+USE TSQL2012;
+
+select * from Sales.Orders
+;
+select * from Sales.OrderDetails
+;
+select orderid, count(productid) as 'NrProductsSold', sum(unitprice*qty) as 'Amount'
+from Sales.OrderDetails 
+group by orderid
+having sum(unitprice*qty) > 1000
+;
+select orderid, count(productid) as 'NrProductsSold', sum(unitprice*qty) as 'Amount'
+from Sales.OrderDetails 
+group by orderid
+having sum(unitprice*qty) >1000
+
+
+select *
+from Sales.OrderDetails 
+where orderid = 10248
+;
+
+USE Adventureworks2012;
+GO
+select * from Sales.SalesOrderDetail
+;
+select SalesOrderID, sum(LineTotal) as 'SubTotal'
+from Sales.SalesOrderDetail
+group by SalesOrderID
+having sum(LineTotal) >100000
+order by SalesOrderID 
+;
+select SalesOrderID, sum(OrderQty*UnitPrice) as 'Total'
+from Sales.SalesOrderDetail
+group by SalesOrderID
+having sum(OrderQty*UnitPrice) > 100000
+order by sum(OrderQty*UnitPrice) desc 
+;
+select top 10 SalesOrderID, sum(OrderQty*UnitPrice) as 'Total'
+from Sales.SalesOrderDetail
+group by SalesOrderID 
+having sum(OrderQty*UnitPrice) <1000
+order by sum(OrderQty*UnitPrice) asc 
